@@ -1,0 +1,11 @@
+<% if signed_in? %>
+  <%= form_for [commentable, Comment.new] do |f| %>
+    <div class="form-group">
+      <%= f.text_area :body, class: "form-control", placeholder: "Agregar comentario" %>
+    </div>
+
+    <div class="actions text-right">
+      <%= f.submit "Comentar", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+<% end %>

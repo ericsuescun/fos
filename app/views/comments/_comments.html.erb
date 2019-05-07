@@ -1,0 +1,8 @@
+<div class="comments">
+  <h2>Comentarios</h2>
+  <% commentable.comments.each do |comment| %>
+    <div class="panel panel-default">
+      <div class="panel-body"><%= comment.body %></div>
+    </div>
+  <% end %>
+</div>
