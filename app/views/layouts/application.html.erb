@@ -48,11 +48,19 @@
                   <li><%= link_to "Login", new_user_session_path %></li>
                 <% end %>
               </ul>
-              <form class="navbar-form navbar-right" role="search">
+               <!-- <form class="navbar-form navbar-right" role="search">
                 <div class="form-group">
                   <input type="text" class="form-control" placeholder="Search">
                 </div>
-              </form>
+              </form> -->
+              <%= form_tag searches_path, :method => 'get', class: "navbar-form navbar-right" do %>
+                <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Buscar pregunta' %>
+                <span class="input-group-btn">
+                </span>
+              <% end %>
+
+
+
             </div><!-- /.navbar-collapse -->
           </div>
         </div>
