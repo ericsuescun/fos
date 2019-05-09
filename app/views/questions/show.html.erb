@@ -1,15 +1,7 @@
 <div class="question-page">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-1">
-        <div class="question-votes">
-          <h2>Votos</h2>
-          <% @question.votes.each do |vote| %>
-            <img src="<%= Gravatar.new("#{vote.user.email}").image_url %>" class="img-circle" />
-          <% end %>
-        </div>        
-      </div>
-      <div class="col-sm-10">
+      <div class="col-sm-9 col-sm-offset-1">
         <header class="question-header">
           <h1><%= @question.title %></h1>
           <p><%= @question.description %></p>
@@ -21,46 +13,50 @@
           <% end %>        
         </header>        
       </div>
+      <div class="col-sm-2">
+        <div class="question-votes">
+          <p>Votos: <%= @question.votes.count %></p>
+        </div>        
+      </div>
     </div>
     <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
+      <div class="col-sm-8 col-sm-offset-1">
         <%= render partial: "comments/comments", locals: {commentable: @question} %>
         <%= render partial: "comments/form", locals: {commentable: @question} %>
       </div>
     </div>
     <% @question.answers.each do |answer| %>
       <div class="row">
-        <div class="answers">
-          <div class="col-sm-1">
-            <% if answer.votes.exists?(user: current_user)  %>
-              <%= link_to answer_vote_path(answer), method: :delete, class: "question-upvote upvote-active" do %>
-                Eliminar voto
-                <span class="upvote-count"><%= answer.votes.count %></span>
-              <% end %>
-            <% else %>
-              <%= link_to answer_vote_path(answer), method: :post, class: "question-upvote" do %>
-                Dar voto
-                <span class="upvote-count"><%= answer.votes.count %></span>
-              <% end %>
-            <% end %>
-            <% answer.votes.each do |vote| %>
-              <img src="<%= Gravatar.new("#{vote.user.email}").image_url %>" class="img-circle" />
-            <% end %>
-          </div>
-          <div class="col-sm-10">
-            <div class="panel panel-default">
-              <header class="panel-heading">
-                <img src="<%= Gravatar.new("#{answer.user.email}").image_url %>" class="img-circle" /> Respondido por: <%= answer.user.email %>
-              </header>
-              <div class="panel-body">
-                <%= answer.body %>
-              </div>
+        <div class="col-sm-9 col-sm-offset-1">
+          <div class="panel panel-default">
+            <header class="panel-heading">
+              <h2>Respondido por: </h2>
+              <img src="<%= Gravatar.new("#{answer.user.email}").image_url %>" class="img-circle" />
+              <%= answer.user.email %>
+            </header>
+            <div class="panel-body">
+              <%= answer.body %>
             </div>
           </div>
         </div>
+        <div class="col-sm-2">
+          <% if user_signed_in? %>
+            <% if answer.votes.exists?(user: current_user)  %>
+              <%= link_to answer_vote_path(answer), method: :delete do %>
+                Votar(-): <%= answer.votes.count %>
+              <% end %>
+            <% else %>
+              <%= link_to answer_vote_path(answer), method: :post do %>
+                Votar(+): <%= answer.votes.count %>
+              <% end %>
+            <% end %>
+          <% else %>
+            Votos: <%= answer.votes.count %>
+          <% end %>
+        </div>
       </div>
       <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-sm-8 col-sm-offset-1">
           <%= render partial: "comments/comments", locals: {commentable: answer} %>
           <% if user_signed_in? %>
             <%= render partial: "comments/form", locals: {commentable: answer} %>
@@ -69,7 +65,7 @@
       </div>
     <% end %>
     <div class="row">
-      <div class="col-sm-10 col-sm-offset-1">
+      <div class="col-sm-9 col-sm-offset-1">
         <% if user_signed_in? %>
           <%= form_for [@question, @question.answers.build] do |f| %>
             <div class="form-group">

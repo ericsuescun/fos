@@ -1,7 +1,7 @@
  .questions {
   margin-top: 40px;
 
-  a p {
+  a {
     color: #C09000;
     text-decoration: none;
     &:hover, &:focus { color: #C09000; text-decoration: none; }
@@ -96,10 +96,19 @@
 }
 
 .question-page {
+
+  a {
+    color: #C09000;
+    text-decoration: none;
+    &:hover, &:focus { color: #C09000; text-decoration: none; }
+  }
+
+  img { width: 40px; }
+
   .question-header {
     background: #C0C0C0;
     color: #303030;
-    text-align: center;
+    text-align: justify-all;
     padding: 25px 25px;
     margin-top: -20px;
     margin-bottom: 30px;
@@ -125,6 +134,7 @@
 
     .actions {
       margin-top: 30px;
+      text-align: right;
 
       a {
         color: black;
@@ -143,8 +153,8 @@
   }
 
   .question-votes {
-    margin-bottom: 40px;
-    padding: 0 25px;
+    /*margin-bottom: 40px;
+    padding: 0 25px;*/
 
     h2 {
       color: #666;

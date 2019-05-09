@@ -1,8 +1,13 @@
 <div class="question-comments">
-  <h2>Comentarios</h2>
-  <% commentable.comments.each do |comment| %>
-    <div class="panel panel-default">
-      <div class="panel-body"><%= comment.body %></div>
-    </div>
-  <% end %>
+  	<!-- <h2>Comentarios</h2> -->
+	<% if commentable.comments.any? %>
+	  <% commentable.comments.each do |comment| %>
+	  	<h2><%= comment.user.email %> comentó:</h2>
+	    <div class="panel panel-default">
+	      <div class="panel-body"><%= comment.body %></div>
+	    </div>
+	  <% end %>
+	<% else %>
+		<h2>Sin comentarios</h2>
+	<% end %>
 </div>

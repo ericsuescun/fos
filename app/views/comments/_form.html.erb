@@ -1,11 +1,12 @@
 <% if signed_in? %>
-  <%= form_for [commentable, Comment.new] do |f| %>
-    <div class="form-group">
-      <%= f.text_area :body, class: "form-control", placeholder: "Agregar comentario" %>
-    </div>
+	<br>
+	<%= form_for [commentable, Comment.new] do |f| %>
+		<div class="form-group">
+			<%= f.text_area :body, class: "form-control", placeholder: "Agregar comentario" %>
+		</div>
 
-    <div class="actions text-right">
-      <%= f.submit "Comentar", class: "btn btn-warning" %>
-    </div>
-  <% end %>
+		<div class="actions text-right">
+			<%= f.submit "Comentar", class: "btn btn-warning" %>
+		</div>
+	<% end %>
 <% end %>

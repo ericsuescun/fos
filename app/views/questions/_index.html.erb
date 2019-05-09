@@ -10,14 +10,18 @@
             </div>
           </div>
           <div class="col-sm-3 col-sm-offset-1">
-            <% if question.votes.exists?(user: current_user)  %>
-              <%= link_to question_vote_path(question), method: :delete do %>
-                <p>Votos: <%= question.votes.count %></p>
+            <% if user_signed_in? %>
+              <% if question.votes.exists?(user: current_user)  %>
+                <%= link_to question_vote_path(question), method: :delete do %>
+                  <p>Votar(-): <%= question.votes.count %></p>
+                <% end %>
+              <% else %>
+                <%= link_to question_vote_path(question), method: :post do %>
+                  <p>Votar(+): <%= question.votes.count %></p>
+                <% end %>
               <% end %>
             <% else %>
-              <%= link_to question_vote_path(question), method: :post do %>
-                <p>Votos: <%= question.votes.count %></p>
-              <% end %>
+              <p>Votos: <%= question.votes.count %></p>
             <% end %>
             <p>Comentarios: <%= question.comments.count %></p>
             <p>Respuestas: <%= question.answers.count %></p>

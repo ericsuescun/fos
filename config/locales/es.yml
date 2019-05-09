@@ -20,3 +20,5 @@ es:
           attributes:
             password_confirmation:
               confirmation: "no confirmada"
+            email:
+              taken: "ya tomado"
