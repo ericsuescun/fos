@@ -25,10 +25,12 @@
               </button>
               <%= link_to "Flowoverstack", root_path, class: "navbar-brand" %>
             </div>
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
+                <% if user_signed_in? %>
+                  <li class="active"><a href=<%= new_question_path %> >Hacer pregunta</a></li>
+                <% end %>
 
               </ul>
               <ul class="nav navbar-nav navbar-right">
@@ -42,25 +44,17 @@
                       <li><%= link_to "Salir", destroy_user_session_path, method: :delete %></li>
                     </ul>
                   </li>
-                  <li><%= link_to "<span class='glyphicon glyphicon-plus'></span>".html_safe, new_question_path %></li>
+
                 <% else %>
                   <li><%= link_to "Regístrate", new_user_registration_path %></li>
-                  <li><%= link_to "Login", new_user_session_path %></li>
+                  <li><%= link_to "Ingresar", new_user_session_path %></li>
                 <% end %>
               </ul>
-               <!-- <form class="navbar-form navbar-right" role="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search">
-                </div>
-              </form> -->
               <%= form_tag searches_path, :method => 'get', class: "navbar-form navbar-right" do %>
                 <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Buscar pregunta' %>
                 <span class="input-group-btn">
                 </span>
               <% end %>
-
-
-
             </div><!-- /.navbar-collapse -->
           </div>
         </div>
@@ -68,7 +62,7 @@
     </nav>
 
     <% if flash[:notice] %>
-      <div class="alert alert-info"><%= flash[:notice] %></div>
+      <div class="alert alert-warning"><%= flash[:notice] %></div>
     <% end %>
 
     <% if flash[:alert] %>
