@@ -1,0 +1,22 @@
+es:
+  errors:
+    messages:
+      blank: "no puede estar vacío"
+      invalid: "es inválido"
+      too_short: "demasiado corta"
+  activerecord:
+    attributes:
+      user:
+        name: "Nombre"
+        password: "Contraseña"
+        email: "Correo electrónico"
+        password_confirmation: "Contraseña"
+      post:
+        title: "Título"
+        content: "Contenido"
+    errors:
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: "no confirmada"
