@@ -34,12 +34,12 @@
           <div class="col-sm-1">
             <% if answer.votes.exists?(user: current_user)  %>
               <%= link_to answer_vote_path(answer), method: :delete, class: "question-upvote upvote-active" do %>
-                <span class="upvote-arrow"></span>
+                Eliminar voto
                 <span class="upvote-count"><%= answer.votes.count %></span>
               <% end %>
             <% else %>
               <%= link_to answer_vote_path(answer), method: :post, class: "question-upvote" do %>
-                <span class="upvote-arrow"></span>
+                Dar voto
                 <span class="upvote-count"><%= answer.votes.count %></span>
               <% end %>
             <% end %>
