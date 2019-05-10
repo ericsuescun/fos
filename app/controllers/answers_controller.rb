@@ -2,9 +2,14 @@ class AnswersController < ApplicationController
 
 	def create
 	  question = Question.find(params[:question_id])
-	  question.answers.create(answers_params)
 
-	  redirect_to question
+	  unless answers_params[:body] == ""
+	  	question.answers.create(answers_params)
+	  	redirect_to question, notice: "Respuesta publicada!"
+	  else
+	  	redirect_to question, notice: "Respuesta vacía! Escribe algo por favor."
+
+	  end
 	end
 
 	def show

@@ -11,9 +11,9 @@ es:
         password: "Contraseña"
         email: "Correo electrónico"
         password_confirmation: "Contraseña"
-      post:
-        title: "Título"
-        content: "Contenido"
+      question:
+        title: "El campo título"
+        description: "El campo descripción"
     errors:
       models:
         user:

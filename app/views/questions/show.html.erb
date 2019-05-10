@@ -21,7 +21,9 @@
     </div>
     <div class="row">
       <div class="col-sm-8 col-sm-offset-1">
-        <%= render partial: "comments/comments", locals: {commentable: @question} %>
+        <% if @question.comments.any? %>
+          <%= render partial: "comments/comments", locals: {commentable: @question} %>
+        <% end %>
         <%= render partial: "comments/form", locals: {commentable: @question} %>
       </div>
     </div>
@@ -57,7 +59,9 @@
       </div>
       <div class="row">
         <div class="col-sm-8 col-sm-offset-1">
-          <%= render partial: "comments/comments", locals: {commentable: answer} %>
+          <% if answer.comments.any? %>
+            <%= render partial: "comments/comments", locals: {commentable: answer} %>
+          <% end %>
           <% if user_signed_in? %>
             <%= render partial: "comments/form", locals: {commentable: answer} %>
           <% end %>
