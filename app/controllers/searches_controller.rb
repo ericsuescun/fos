@@ -1,7 +1,7 @@
 class SearchesController < ApplicationController
 	
 	def index
-		@questions = Question.where("title like ?", "%#{params[:search]}%")
+		@questions = Question.where("title like ? OR description like ?", "%#{params[:search]}%", "%#{params[:search]}%")
 	end
 
 	private

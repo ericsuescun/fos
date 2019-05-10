@@ -43,11 +43,11 @@
           <% if user_signed_in? %>
             <% if answer.votes.exists?(user: current_user)  %>
               <%= link_to answer_vote_path(answer), method: :delete do %>
-                Votar(-): <%= answer.votes.count %>
+                <p class="already">Votar(-): <%= answer.votes.count %></p>
               <% end %>
             <% else %>
               <%= link_to answer_vote_path(answer), method: :post do %>
-                Votar(+): <%= answer.votes.count %>
+                <p class="notyet">Votar(+): <%= answer.votes.count %></p>
               <% end %>
             <% end %>
           <% else %>

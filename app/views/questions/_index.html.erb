@@ -6,6 +6,7 @@
           <div class="col-sm-8">
             <div class="question-details">
               <span class="question-title"><%= link_to question.title, question %></span>
+              <p class="user"><%= question.user.email %> preguntó el: <%= question.created_at %></p>
               <span class="question-description"><%= markdown(question.description) %></span>
             </div>
           </div>
@@ -13,11 +14,11 @@
             <% if user_signed_in? %>
               <% if question.votes.exists?(user: current_user)  %>
                 <%= link_to question_vote_path(question), method: :delete do %>
-                  <p>Votar(-): <%= question.votes.count %></p>
+                  <p class="already">Votar(-): <%= question.votes.count %></p>
                 <% end %>
               <% else %>
                 <%= link_to question_vote_path(question), method: :post do %>
-                  <p>Votar(+): <%= question.votes.count %></p>
+                  <p class="notyet">Votar(+): <%= question.votes.count %></p>
                 <% end %>
               <% end %>
             <% else %>
