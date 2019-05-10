@@ -4,7 +4,7 @@
       <div class="col-sm-9 col-sm-offset-1">
         <header class="question-header">
           <h1><%= @question.title %></h1>
-          <p><%= @question.description %></p>
+          <p><%= markdown(@question.description) %></p>
           <% if user_signed_in? && @question.user == current_user %>
             <div class="actions">
               <%= link_to "<span class='glyphicon glyphicon-pencil'></span>".html_safe, edit_question_path(@question) %>
@@ -35,7 +35,7 @@
               <%= answer.user.email %>
             </header>
             <div class="panel-body">
-              <%= answer.body %>
+              <%= markdown(answer.body) %>
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-	#Require authentication first!!!
+	before_action :authenticate_user!
 
 	def create
 	  @comment = @commentable.comments.new(comment_params)

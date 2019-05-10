@@ -1,5 +1,4 @@
 class QuestionsController < ApplicationController
-	# before_action :private_access, except: [:index, :show]
 	before_action :authenticate_user!, except: [:index, :show]
 
 	def index
